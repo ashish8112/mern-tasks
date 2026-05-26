@@ -42,6 +42,8 @@ use state and displays multiple profile of student using props
 - Understood File Structure 
 
 ### How to Run 
+```bash
 cd mainflow-frontend
 npm install 
 npm run dev
+```
