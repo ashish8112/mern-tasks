@@ -47,3 +47,13 @@ cd mainflow-frontend
 npm install 
 npm run dev
 ```
+
+## 👨‍💻 Developer
+**Ashish Kumar Shukla**  
+MCA Student — Kristu Jayanti University, Bengaluru  
+BCA Gold Medalist | MERN Stack Developer
+
+- GitHub: https://github.com/ashish8112
+- LinkedIn: https://www.linkedin.com/in/ashish-shukla81/
+- LeetCode: https://leetcode.com/u/ashish-shukla81/
+- Email: ashishkrshukla.dev@gmail.com
