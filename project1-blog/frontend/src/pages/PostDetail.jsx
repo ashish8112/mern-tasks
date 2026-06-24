@@ -2,16 +2,17 @@ import { useState,useEffect } from "react";
 import API from "../api/axios";
 import { useParams } from "react-router-dom";
 export default function PostDetail(){
-    const [post,setPost] = useState({});
+    const [post,setPost] = useState(null);
     const [comments,setComment] = useState([]);
-    const postId = useParams();
+    const [commentText, setCommentText] = useState("");
+    const {id} = useParams();
     useEffect(()=>{
         async function fetchPostDetails(){
             try{
-                const post = await API.get(`/posts/${postId}`)
-                setPosts(posts.data);
-                const comments = await API.get(`/comments/${postId}`)
-                setComments(comments.data)
+                const res = await API.get(`/posts/${id}`)
+                setPost(res.data);
+                const {data} = await API.get(`/comments/${id}`)
+                setComment(data)
             }
             catch(err)
             {
@@ -20,28 +21,41 @@ export default function PostDetail(){
         }
         fetchPostDetails();
     },[])
+    async function handleComment() {
+  if (!commentText) return;
+  try {
+    const { data } = await API.post(`/comments/${id}`, { content: commentText });
+    setComment([...comments, data]);
+    setCommentText("");
+  } catch (err) {
+    alert(err.response?.data?.message || "Comment failed");
+  }
+}
+    if(!post)
+        return <p>loading...</p>
     return(
         <div className="post-detail">
-        <div className="post">
-        <label htmlFor="post">{post.title}</label>
-        <br></br>
-        <img src= {post.coverImage} height={200} width={200} />
-        <p>{post.content}</p>
-        <p>{post.summary}</p>
-        <p>{post.author}</p>
-        <p>{post.likes.length}</p>
-        </div>
-        <div className="comments">
-        <label htmlFor="comments">comments</label>
-        <br></br>
-        {comments.map((comment)=>(
-            <div key={comment._id}>
-            <p>Name- {comment.author}</p>
-            <p>{comment.content}</p>
+            <div className="post">
+                <label htmlFor="post">{post.title}</label>
+                <br></br>
+                <img src= {post.coverImage} height={200} width={200} />
+                <p>{post.content}</p>
+                <p>{post.summary}</p>
+                <p>{post.author}</p>
+                <p>{post.likes.length}</p>
             </div>
-        ))}    
+            <div className="comments">
+                <label htmlFor="comments">comments</label>
+                <br></br>
+                {comments.map((comment)=>(
+                    <div key={comment._id}>
+                    <p>Name- {comment.author}</p>
+                    <p>{comment.content}</p>
+                     </div>
+                ))}    
+            </div>
+            <input value={commentText} onChange={(e) => setCommentText(e.target.value)} placeholder="Write a comment..." />
+            <button onClick={handleComment}>Comment</button>
         </div>
-        </div>
-        
     )
 }

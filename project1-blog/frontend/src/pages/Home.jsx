@@ -28,7 +28,7 @@ export default function Home(){
        {posts.map((post,index)=>(
         <div key={post._id}> Post {index+1} 
         <img src= {post.coverImage} height={200} width={200} />
-        <p onClick={navigate(`/post/${post._id}`)} style={{cursor:"pointer",color:"blue"}}>{post.title}</p>
+        <p onClick={()=>navigate(`/post/${post._id}`)} style={{cursor:"pointer",color:"blue"}}>{post.title}</p>
         <p>{post.content}</p>
         <p>{post.summary}</p>
         <p>{post.author}</p>
