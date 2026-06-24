@@ -24,7 +24,6 @@ export default function Home(){
         return <p>loading...</p>
     return(
         <div>
-        <button onClick={()=>navigate("/create")} style={{color:"blue",fontSize:"24px", padding: "10px 20px"}}>Create Post</button>
        {posts.map((post,index)=>(
         <div key={post._id}> Post {index+1} 
         <img src= {post.coverImage} height={200} width={200} />
