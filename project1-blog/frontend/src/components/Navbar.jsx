@@ -11,6 +11,7 @@ export default function Navbar(){
             <div>
             <button style={{padding:"10px 20px",cursor:"pointer"}} onClick={()=>navigate("/create")}>Create Post</button>
             <button style={{padding:"10px 20px",cursor:"pointer"}} onClick={()=>logout()}>Logout</button>
+            <button style={{padding:"10px 20px",cursor:"pointer"}} onClick={()=>navigate("/dashboard")}>Dashboard</button>
             </div>
             </nav>
         )
