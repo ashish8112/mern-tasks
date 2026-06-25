@@ -108,7 +108,7 @@ router.post("/:id/like",authMiddleware,async(req,res)=>{
         else{
             updatedPost = await Post.findByIdAndUpdate(req.params.id,{$addToSet:{likes:req.user.id}},{new:true})
         }
-        res.status(200).json({message:"Done"})
+        res.status(200).json({message:"Done",likes:updatedPost.likes})
     }
     catch(err){
         return res.status(500).json({message:err.message})
