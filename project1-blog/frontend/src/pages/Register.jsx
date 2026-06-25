@@ -43,7 +43,7 @@ export default function Register(){
             onChange={handleChange}
         />
         <br></br>
-        <label htmlFor="user-name">Enter the User Name </label>
+        <label htmlFor="user-name">Enter the Name </label>
        <br></br>
         <input 
             type="text"
