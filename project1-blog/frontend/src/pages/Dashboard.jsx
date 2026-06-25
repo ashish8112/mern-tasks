@@ -58,7 +58,7 @@ export default function  Dashboard(){
                 <p>{post.summary}</p>
                 <p>{post.author.name}</p>
                 <button onClick={()=>handleClick(post._id)}>Like {post.likes.length}</button>
-                <button style={{marginLeft:"70%"}}onClick={() => handleDelete(post._id)}>Delete</button>
+                <button style={{marginLeft:"65%"}}onClick={() => handleDelete(post._id)}>Delete</button>
                 </div>
             ))}
         </div>
