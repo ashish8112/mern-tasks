@@ -20,6 +20,18 @@ export default function Home(){
         }
         postFetch();
     },[])
+    async function handleLike(postId){
+        try{
+            const { data } = await API.post(`/posts/${postId}/like`);
+            setPost(posts.map((p)=>(
+                (p._id===postId)?{...p,likes:data.likes}:p
+            )))
+        }
+        catch(err){
+            alert(err.response?.data?.message || "Like failed");
+            navigate("/login");
+        }
+    }
     if(loading)
         return <p>loading...</p>
     return(
@@ -31,7 +43,7 @@ export default function Home(){
         <p>{post.content}</p>
         <p>{post.summary}</p>
         <p>{post.author}</p>
-        <p>{post.likes.length}</p>
+        <button onClick={() => handleLike(post._id)}>Like ({post.likes.length})</button>
         </div>
        ))}
        </div>
