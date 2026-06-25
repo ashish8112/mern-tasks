@@ -37,12 +37,12 @@ export default function Home(){
     return(
         <div>
        {posts.map((post,index)=>(
-        <div key={post._id}> Post {index+1} 
-        <img src= {post.coverImage} height={200} width={200} />
+        <div key={post._id} className="post-card"> Post {index+1} 
+        <img onClick={()=>navigate(`/post/${post._id}`)} src= {post.coverImage} height={200} width={200} style={{cursor:"pointer"}}/>
         <p onClick={()=>navigate(`/post/${post._id}`)} style={{cursor:"pointer",color:"blue"}}>{post.title}</p>
         <p>{post.content}</p>
         <p>{post.summary}</p>
-        <p>{post.author}</p>
+        <p>Author- {post.author.name}</p>
         <button onClick={() => handleLike(post._id)}>Like ({post.likes.length})</button>
         </div>
        ))}
