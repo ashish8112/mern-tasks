@@ -26,6 +26,21 @@ router.post("/",authMiddleware,async(req,res)=>{
         return res.status(500).json({message:err.message})
     }   
 })
+
+router.get("/my/posts",authMiddleware,async(req,res)=>{
+    try{
+        const {id} = req.user;
+        const myPosts =await Post.find({author:id})
+        if(myPosts.length===0)
+            return  res.status(404).json({message:"No Post"});
+        return res.status(200).json(myPosts);
+    }
+    catch (err)
+    {
+        return res.status(500).json({message:err.message})
+    }
+})
+
 router.get("/:id",async(req,res)=>{
     try{
         const id = req.params.id;
