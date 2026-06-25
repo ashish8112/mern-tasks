@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import CreatePost from "./pages/CreatePost";
 import PostDetail from "./pages/PostDetail";
 import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
 export default function App(){
   return(
     <>
@@ -16,6 +17,7 @@ export default function App(){
         <Route path="/login" element={<Login/>}/>
         <Route path="/create" element={<ProtectedRoute><CreatePost/></ProtectedRoute>}/>
         <Route path="/post/:id" element={<PostDetail></PostDetail>} />
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
     </Routes>
     </>
   )
